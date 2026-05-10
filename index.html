@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aşkın Adı</title>
+  <meta name="description"
+    content="21 Mart'ta başlayan hikayenizi fotoğraflar, sözler ve canlı sayaçla kutlayan modern bir aşk sitesi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <div class="intro-overlay" id="introOverlay" aria-hidden="true">
+    <div class="intro-overlay__backdrop"></div>
+    <div class="intro-overlay__content">
+      <p class="eyebrow">Aşkın Adı</p>
+      <h1>Her karede sen, her anda biz.</h1>
+      <div class="intro-overlay__stack" id="introStack"></div>
+    </div>
+  </div>
+
+  <audio id="loveSong" loop preload="auto">
+    <source src="Aşk.mp3" type="audio/mpeg" />
+  </audio>
+
+  <button class="music-toggle" id="musicToggle" type="button" aria-pressed="false">
+    Müziği Başlat
+  </button>
+
+  <main class="page-shell">
+    <section class="hero" id="top">
+        <div class="hero__copy">
+          <p class="eyebrow">21 Mart'tan beri kalbimin en güzel mevsimi</p>
+          <h1>Aşkın Adı</h1>
+          <div class="love-badges">
+            <span>Birlikte geçen en güzel zaman</span>
+            <span>Kalbimin en özel hikayesi</span>
+          </div>
+          <p class="hero__quote" id="welcomeQuote"></p>
+          <p class="hero__text">
+            Seninle geçen her gün, hayatın içindeki bütün renkleri daha da anlamlı
+            yapıyor. Bu sayfa, birlikte yazdığımız hikayenin yaşayan bir hatırası.
+          </p>
+
+        <div class="hero__actions">
+          <a class="button button--primary" href="#counter">Süreyi Gör</a>
+          <a class="button button--ghost" href="#gallery">Anılarımız</a>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <div class="hero__glow"></div>
+        <div class="hero__frame">
+          <img id="heroImage" src="" alt="Birlikte özel bir anımız" />
+        </div>
+        <div class="hero__mini-cards" id="heroMiniCards"></div>
+      </div>
+    </section>
+
+    <section class="counter-section" id="counter">
+      <div class="section-heading">
+        <p class="eyebrow">Birlikte Geçen Zaman</p>
+        <h2>Seninle geçen her saniye, kalbime işlenmiş bir anı.</h2>
+      </div>
+
+      <div class="counter-highlight">
+          <div>
+            <p class="counter-highlight__label">Hikayemiz başladı</p>
+            <h3>21 Mart 2026</h3>
+          </div>
+          <p class="counter-highlight__text" id="fullDuration"></p>
+        </div>
+
+      <div class="counter-grid">
+        <article class="counter-card">
+          <span id="yearsValue">0</span>
+          <p>Yıl</p>
+        </article>
+        <article class="counter-card">
+          <span id="monthsValue">0</span>
+          <p>Ay</p>
+        </article>
+        <article class="counter-card">
+          <span id="daysValue">0</span>
+          <p>Gün</p>
+        </article>
+        <article class="counter-card">
+          <span id="hoursValue">0</span>
+          <p>Saat</p>
+        </article>
+        <article class="counter-card">
+          <span id="minutesValue">0</span>
+          <p>Dakika</p>
+        </article>
+        <article class="counter-card">
+          <span id="secondsValue">0</span>
+          <p>Saniye</p>
+        </article>
+      </div>
+
+      <div class="totals-grid">
+        <article class="totals-card">
+          <p>Toplam Gün</p>
+          <strong id="totalDays">0</strong>
+        </article>
+        <article class="totals-card">
+          <p>Toplam Saat</p>
+          <strong id="totalHours">0</strong>
+        </article>
+        <article class="totals-card">
+          <p>Toplam Dakika</p>
+          <strong id="totalMinutes">0</strong>
+        </article>
+        <article class="totals-card">
+          <p>Toplam Saniye</p>
+          <strong id="totalSeconds">0</strong>
+        </article>
+      </div>
+    </section>
+
+      <section class="message-section">
+        <div class="section-heading">
+          <p class="eyebrow">Kalbimden Geçenler</p>
+          <h2>Bazı duygular yazıya sığmaz; ama yine de senin için denedim.</h2>
+        </div>
+
+        <div class="message-grid" id="messageGrid"></div>
+      </section>
+
+      <section class="promise-section">
+        <div class="section-heading">
+          <p class="eyebrow">Sana Dair</p>
+          <h2>Sevdiğim şey yalnızca sen değil, seninle kurduğum bütün o güzel hisler.</h2>
+        </div>
+
+        <div class="promise-layout">
+          <article class="promise-card promise-card--featured">
+            <p class="promise-card__kicker">Kalbimin Notu</p>
+            <h3>Seninle hayat daha yumuşak, daha sıcak, daha gerçek.</h3>
+            <p>
+              Ben sende sadece aşkı değil, huzuru da buldum. Günün telaşı ne kadar
+              büyük olursa olsun, aklıma sen düşünce içimde her şey dinginleşiyor.
+            </p>
+          </article>
+
+          <div class="promise-list" id="promiseList"></div>
+        </div>
+      </section>
+
+      <section class="gallery-section" id="gallery">
+        <div class="section-heading">
+          <p class="eyebrow">Anılarımız</p>
+          <h2>Her fotoğraf, sana tekrar tekrar aşık olmamın başka bir sebebi.</h2>
+      </div>
+
+      <div class="polaroid-strip" id="polaroidStrip"></div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+      <section class="closing-section">
+        <div class="closing-card">
+          <p class="eyebrow">Sonsöz</p>
+          <h2>İyi ki varsın sevgilim.</h2>
+          <p>
+          Seninle kurduğum her hayal, gerçekliğin en güzel hali gibi geliyor.
+          Elini tuttuğum her an, kendimi olduğum yerde tamamlanmış hissediyorum.
+          Bu hikaye daha çok uzasın, daha çok gülelim, daha çok sarılalım, daha
+          çok "biz" olalım.
+          </p>
+          <p class="closing-card__signature">Seni çok seviyorum.</p>
+        </div>
+
+        <div class="quote-ribbon" id="quoteRibbon"></div>
+      </section>
+    </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
