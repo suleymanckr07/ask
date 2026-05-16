@@ -451,7 +451,9 @@ function setupScrollMusic() {
 
   cleanupScrollMusicBindings();
 
-  const startOnScroll = () => {
+  const startOnScroll = (event) => {
+    if (event?.target?.closest?.("#songToggle")) return;
+
     if (!musicStarted) {
       tryPlayMusic();
     }
@@ -541,7 +543,16 @@ function setupMusicControls() {
   setMusicPlaying(false);
 
   if (songToggle) {
-    songToggle.addEventListener("click", () => {
+    songToggle.addEventListener("pointerdown", (event) => {
+      event.stopPropagation();
+    });
+
+    songToggle.addEventListener("touchstart", (event) => {
+      event.stopPropagation();
+    }, { passive: true });
+
+    songToggle.addEventListener("click", (event) => {
+      event.stopPropagation();
       toggleMusic();
     });
   }
