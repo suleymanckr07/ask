@@ -135,8 +135,10 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(20, 12, 16, 0.28);
-  backdrop-filter: blur(28px) saturate(1.05);
+  background:
+    radial-gradient(circle at top, rgba(255, 116, 150, 0.16), transparent 34%),
+    linear-gradient(135deg, rgba(41, 8, 18, 0.5), rgba(22, 6, 16, 0.78));
+  backdrop-filter: blur(34px) saturate(1.16);
   transition: opacity 0.8s ease, visibility 0.8s ease;
   overflow: hidden;
 }
@@ -152,16 +154,17 @@ a {
   inset: -6%;
   background-position: center;
   background-size: cover;
-  filter: blur(34px) brightness(0.62) saturate(1.08);
-  transform: scale(1.08);
+  filter: blur(40px) brightness(0.52) saturate(1.25) hue-rotate(-8deg);
+  transform: scale(1.12);
 }
 
 .intro-overlay__veil {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), transparent 26%),
-    linear-gradient(135deg, rgba(255, 238, 243, 0.16), rgba(21, 10, 16, 0.58));
+    radial-gradient(circle at 18% 18%, rgba(255, 214, 226, 0.2), transparent 24%),
+    radial-gradient(circle at 82% 24%, rgba(222, 60, 99, 0.16), transparent 28%),
+    linear-gradient(135deg, rgba(73, 10, 28, 0.28), rgba(18, 5, 12, 0.76));
 }
 
 .intro-inner {
@@ -178,10 +181,13 @@ a {
   align-items: center;
   padding: 1.25rem;
   border-radius: 40px;
-  background: rgba(255, 251, 248, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(22px);
+  background:
+    linear-gradient(145deg, rgba(255, 245, 246, 0.16), rgba(133, 18, 49, 0.14));
+  border: 1px solid rgba(255, 225, 233, 0.24);
+  box-shadow:
+    0 30px 90px rgba(18, 3, 10, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(26px) saturate(1.2);
 }
 
 .intro-copy {
@@ -194,8 +200,9 @@ a {
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #ffd8e3;
+  color: #ffd5df;
   margin-bottom: 0.85rem;
+  text-shadow: 0 0 18px rgba(255, 110, 152, 0.25);
 }
 
 .intro-title {
@@ -203,15 +210,16 @@ a {
   font-size: clamp(4rem, 11vw, 8rem);
   font-weight: 900;
   line-height: 0.9;
-  background: linear-gradient(135deg, var(--pink-deep), var(--pink), var(--gold));
+  background: linear-gradient(135deg, #fff7f8 0%, #ffb6c9 28%, #ff7c9c 56%, #ffdfb7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 0.9rem;
+  filter: drop-shadow(0 14px 30px rgba(110, 15, 48, 0.22));
 }
 
 .intro-sub {
-  color: rgba(255, 242, 246, 0.84);
+  color: rgba(255, 238, 243, 0.92);
   font-size: 1rem;
   margin: 0 0 1.25rem;
   max-width: 30rem;
@@ -228,9 +236,12 @@ a {
   inset: 0;
   border-radius: 32px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.34);
-  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.24);
-  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 229, 236, 0.34);
+  box-shadow:
+    0 30px 85px rgba(0, 0, 0, 0.32),
+    0 0 0 1px rgba(255, 165, 190, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(98, 11, 37, 0.16));
 }
 
 .intro-spotlight__photo img {
@@ -252,8 +263,9 @@ a {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.15rem, 2.5vw, 1.6rem);
   line-height: 1.6;
-  color: #fff3f7;
+  color: #fff4f6;
   transition: opacity 0.3s ease, transform 0.3s ease;
+  text-shadow: 0 8px 24px rgba(45, 6, 18, 0.24);
 }
 
 .intro-love-note.is-fading {
@@ -267,12 +279,14 @@ a {
   align-items: center;
   gap: 0.75rem;
   padding: 0.9rem 2rem;
-  background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+  background: linear-gradient(135deg, #ff8cac 0%, #e44576 52%, #b91f53 100%);
   color: white;
   border-radius: 999px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(192, 66, 94, 0.35);
+  box-shadow:
+    0 12px 30px rgba(192, 37, 88, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
   animation: introPulse 2s ease-in-out infinite;
 }
 
@@ -280,11 +294,15 @@ a {
 
   0%,
   100% {
-    box-shadow: 0 8px 24px rgba(192, 66, 94, 0.35);
+    box-shadow:
+      0 12px 30px rgba(192, 37, 88, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22);
   }
 
   50% {
-    box-shadow: 0 12px 40px rgba(192, 66, 94, 0.55);
+    box-shadow:
+      0 18px 44px rgba(212, 48, 104, 0.58),
+      0 0 34px rgba(255, 134, 171, 0.22);
   }
 }
 
@@ -303,7 +321,7 @@ a {
 .pulse-ring {
   position: absolute;
   inset: -4px;
-  border: 2px solid var(--pink-light);
+  border: 2px solid rgba(255, 205, 220, 0.82);
   border-radius: 999px;
   animation: pulseRing 2s ease-in-out infinite;
 }
