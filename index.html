@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bilge'ye Dair Her Şey 🌸</title>
-  <meta name="description" content="Bilge'ye özel bir aşk hikayesi." />
+  <title>Sevgilim Bilge</title>
+  <meta name="description" content="Sevgilim Bilge için sevgi dolu, içten bir aşk sayfası." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -18,43 +18,40 @@
 
   <!-- Floating petals -->
   <div class="petals-container" id="petalsContainer"></div>
+  <div class="sparkle-container" id="sparkleContainer"></div>
 
   <!-- Cursor glow -->
   <div class="cursor-glow" id="cursorGlow"></div>
 
   <!-- INTRO OVERLAY -->
   <div class="intro-overlay" id="introOverlay">
+    <div class="intro-overlay__bg" id="introBackdrop"></div>
+    <div class="intro-overlay__veil"></div>
     <div class="intro-inner">
-      <div class="intro-hearts">
-        <span class="ih ih1">🌸</span>
-        <span class="ih ih2">💕</span>
-        <span class="ih ih3">🌸</span>
-      </div>
-      <p class="intro-eyebrow">Seni seviyorum</p>
-      <h1 class="intro-title">Bilge</h1>
-      <p class="intro-sub">21 Mart'tan beri kalbimin en güzel mevsimi</p>
-      <div class="intro-polaroids" id="introPolaroids"></div>
-      <div class="intro-enter" id="introEnter">
-        <span>Dokunarak gir</span>
-        <div class="pulse-ring"></div>
+      <div class="intro-panel">
+        <div class="intro-spotlight">
+          <div class="intro-spotlight__photo">
+            <img id="introPhoto" src="" alt="Açılış fotoğrafı" />
+          </div>
+        </div>
+        <div class="intro-copy">
+          <p class="intro-eyebrow">Sana ait küçük bir dünya</p>
+          <h1 class="intro-title">Bilge</h1>
+          <p class="intro-sub">21 Mart'tan beri kalbimin en güzel mevsimi</p>
+          <p class="intro-love-note" id="introLoveNote"></p>
+          <div class="intro-enter" id="introEnter">
+            <span>Hikayemize geç</span>
+            <div class="pulse-ring"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- MUSIC -->
   <audio id="loveSong" loop preload="auto">
-    <source src="Aşk.mp3" type="audio/mpeg" />
+    <source src="Aşk.mp3" type="audio/mpeg" />
   </audio>
-  <button class="music-btn" id="musicToggle" aria-label="Müzik">
-    <span class="music-icon" id="musicIcon">♪</span>
-    <span class="music-label" id="musicLabel">Müzik</span>
-    <div class="music-bars" id="musicBars">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </button>
 
   <!-- MAIN -->
   <main>
@@ -66,8 +63,8 @@
         <div class="hero-copy">
           <p class="eyebrow">21 Mart 2026 · Sonsuzluğa</p>
           <h1 class="hero-title">
-            Aşkın<br />
-            <em>adı</em><br />
+            Benim güzel<br />
+            <em>sevgilim</em><br />
             <span class="hero-name">Bilge.</span>
           </h1>
           <p class="hero-quote" id="heroQuote"></p>
@@ -84,7 +81,7 @@
           <div class="hero-frame-wrap">
             <div class="hero-frame-deco"></div>
             <div class="hero-frame">
-              <img id="heroImg" src="" alt="Biz" />
+              <img id="heroImg" class="image-switch" src="" alt="Biz" />
               <div class="hero-frame-shine"></div>
             </div>
           </div>
@@ -100,6 +97,27 @@
       <div class="scroll-hint">
         <span>Aşağı kaydır</span>
         <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- ── OUR SONG ── -->
+    <section class="song-section">
+      <div class="song-card reveal">
+        <div class="song-copy">
+          <div class="section-label">🎵 Bizim Şarkımız</div>
+          <h2 class="section-title">Bu şarkı çalınca<br /><em>aklıma hep sen geliyorsun.</em></h2>
+          <p class="song-text">
+            Bazen bir şarkı sadece müzik olmaz sevgilim. İçinde seni düşünürüm, seni özlerim,
+            sana sarılmak isterim. Bu şarkı da benim için tam olarak öyle.
+          </p>
+          <p class="song-note" id="songNote"></p>
+        </div>
+        <div class="song-visual">
+          <p class="song-caption">
+            Bazen tek bir şarkı bile insanın içindeki özlemi, sevgiyi ve bütün güzel hisleri
+            aynı anda hatırlatabiliyor.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -163,11 +181,18 @@
       </div>
     </section>
 
+    <!-- ── TIMELINE ── -->
+    <section class="timeline-section">
+      <div class="section-label">🕰️ İlklerimiz</div>
+      <h2 class="section-title">Bazı ilkler vardır ki<br /><em>insanın kalbinde hep kalır.</em></h2>
+      <div class="timeline-list" id="timelineList"></div>
+    </section>
+
     <!-- ── DAILY QUOTE ── -->
     <section class="daily-section">
       <div class="daily-card" id="dailyCard">
         <div class="daily-ornament">✦</div>
-        <p class="daily-label">Bugünün Sözü</p>
+        <p class="daily-label">Bugün Sana Söylemek İstediğim</p>
         <blockquote class="daily-quote" id="dailyQuote"></blockquote>
         <div class="daily-ornament">✦</div>
         <button class="daily-btn" id="dailyBtn">Yeni söz ↻</button>
@@ -176,9 +201,32 @@
 
     <!-- ── MESSAGES ── -->
     <section class="messages-section" id="messages">
-      <div class="section-label">💌 Kalbimden Geçenler</div>
-      <h2 class="section-title">Bazı duygular yazıya sığmaz;<br /><em>ama yine de denedim.</em></h2>
+      <div class="section-label">💌 Sana Söylemek İstediklerim</div>
+      <h2 class="section-title">Sana baktığımda içimden geçenleri<br /><em>biraz olsun buraya bıraktım.</em></h2>
       <div class="messages-grid" id="messagesGrid"></div>
+      <div class="phrase-panel reveal">
+        <p class="phrase-panel-label">Sana bakınca içimden geçen küçücük şeyler</p>
+        <div class="phrase-cloud" id="phraseCloud"></div>
+      </div>
+    </section>
+
+    <!-- ── REASONS ── -->
+    <section class="reasons-section">
+      <div class="section-label">💖 Neden Seni Seviyorum</div>
+      <h2 class="section-title">Tek bir sebep yok sevgilim;<br /><em>sende sevdiğim çok şey var.</em></h2>
+      <div class="reasons-grid" id="reasonsGrid"></div>
+    </section>
+
+    <!-- ── LETTER ── -->
+    <section class="letter-section">
+      <div class="letter-card reveal">
+        <div class="section-label">💌 Sana Mektubum</div>
+        <h2 class="section-title">İçimden geldiği gibi,<br /><em>sadece sana yazdım.</em></h2>
+        <button class="letter-toggle" id="letterToggle" type="button" aria-expanded="false">
+          Mektubu aç
+        </button>
+        <div class="letter-body" id="letterBody"></div>
+      </div>
     </section>
 
     <!-- ── PROMISE ── -->
@@ -186,7 +234,7 @@
       <div class="promise-inner">
         <div class="promise-text">
           <div class="section-label">🌸 Sana Dair</div>
-          <h2 class="section-title" style="color:#fff">Sevdiğim şey<br /><em>senin her halin.</em></h2>
+          <h2 class="section-title" style="color:#fff">Sende en çok sevdiğim şey<br /><em>sen olman sevgilim.</em></h2>
           <p class="promise-desc">
             Seninle sadece mutlu anları değil, sıradan kahve sabahlarını da, trafikteki bekleyişleri de,
             plan dışı geçen o gün sonlarını da seviyorum. Çünkü sen olunca, her şey güzel bir şeye dönüşüyor.
@@ -195,11 +243,18 @@
         </div>
         <div class="promise-visual">
           <div class="pv-frame">
-            <img id="promiseImg" src="" alt="Birlikte" />
+            <img id="promiseImg" class="image-switch" src="" alt="Birlikte" />
             <div class="pv-caption">Seninle her an 🌸</div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- ── COMFORT ── -->
+    <section class="comfort-section">
+      <div class="section-label">🤍 Bana İyi Gelen Şey Sensin</div>
+      <h2 class="section-title">Bazen bunu uzun uzun anlatamıyorum;<br /><em>ama sen bana gerçekten çok iyi geliyorsun.</em></h2>
+      <div class="comfort-grid" id="comfortGrid"></div>
     </section>
 
     <!-- ── GALLERY ── -->
@@ -210,12 +265,39 @@
       <div class="gallery-masonry" id="galleryMasonry"></div>
     </section>
 
+    <!-- ── MEMORY WALL ── -->
+    <section class="memory-wall-section">
+      <div class="section-label">🧷 Anı Duvarı</div>
+      <h2 class="section-title">Bazı kareler var ki<br /><em>bakınca içim tekrar aynı şekilde oluyor.</em></h2>
+      <div class="memory-wall" id="memoryWall"></div>
+    </section>
+
+    <!-- ── VIDEOS ── -->
+    <section class="video-section" id="videos">
+      <div class="section-label">🎞️ Beraber Olduğumuz Anlar</div>
+      <h2 class="section-title">Bazı anlar var ki seni izledikçe<br /><em>kalbim tekrar yumuşuyor.</em></h2>
+      <div class="video-shell">
+        <article class="video-feature-card reveal">
+          <video
+            id="featuredVideo"
+            class="featured-video"
+            playsinline
+            muted
+            loop
+            controls
+            preload="metadata"
+          ></video>
+        </article>
+        <div class="video-grid" id="videoGrid"></div>
+      </div>
+    </section>
+
     <!-- ── CLOSING ── -->
     <section class="closing-section">
       <div class="closing-inner">
         <div class="closing-deco">🌸</div>
-        <p class="closing-eyebrow">Son Söz</p>
-        <h2 class="closing-title">İyi ki varsın,<br /><em>Bilge.</em></h2>
+        <p class="closing-eyebrow">Kalbimden Sana</p>
+        <h2 class="closing-title">Seni çok seviyorum,<br /><em>Bilge.</em></h2>
         <p class="closing-text">
           Seninle kurduğum her hayal, gerçekliğin en güzel hali gibi geliyor. Elini tuttuğum her an
           içimde bir şeyler tamamlanmış gibi hissediyorum. Bu hikaye daha çok uzasın; daha çok gülelim,
@@ -227,8 +309,21 @@
       </div>
     </section>
 
+    <!-- ── FOREVER ── -->
+    <section class="forever-section">
+      <div class="forever-card reveal">
+        <p class="forever-eyebrow">Sonsuza Kadar</p>
+        <h2>Bugün de, yarın da,<br />kalbim hep sana dönecek sevgilim.</h2>
+        <p>
+          Ne kadar zaman geçerse geçsin, sana olan sevgimin içimde aynı sıcaklıkla kalmasını istiyorum.
+          Bu sayfa bitse bile hissettiğim şey bitmiyor. Ben seni çok seviyorum ve seni sevmeye devam edeceğim.
+        </p>
+      </div>
+    </section>
+
   </main>
 
+  <script src="media-manifest.js"></script>
   <script src="script.js"></script>
 </body>
 
