@@ -288,6 +288,7 @@ const cursorGlow = document.getElementById("cursorGlow");
 const prevVals = {};
 const heroFloaterImages = [];
 let musicStarted = false;
+let playPending = false;
 let musicScrollBindings = [];
 let quoteIndex = 0;
 const shuffledQuotes = shuffle(allQuotes);
@@ -442,6 +443,7 @@ function setupIntro() {
   window.setTimeout(() => {
     if (!overlay.classList.contains("hidden")) {
       overlay.classList.add("hidden");
+      tryPlayMusic();
     }
   }, 5600);
 }
@@ -500,8 +502,9 @@ function cleanupScrollMusicBindings() {
 }
 
 async function tryPlayMusic() {
-  if (musicStarted || !loveSong) return;
+  if (musicStarted || playPending || !loveSong) return;
 
+  playPending = true;
   try {
     loveSong.volume = 0.8;
     loveSong.muted = false;
@@ -510,7 +513,10 @@ async function tryPlayMusic() {
     setMusicPlaying(true);
     cleanupScrollMusicBindings();
   } catch (error) {
+    // Tarayıcı autoplay politikası engelledi — scroll/touch eventleri aktif kalmaya devam eder
     setMusicPlaying(false);
+  } finally {
+    playPending = false;
   }
 }
 
