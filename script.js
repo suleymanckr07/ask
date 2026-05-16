@@ -278,6 +278,8 @@ const videoGrid = document.getElementById("videoGrid");
 const featuredVideo = document.getElementById("featuredVideo");
 const videoSection = document.getElementById("videos");
 const songNote = document.getElementById("songNote");
+const songToggle = document.getElementById("songToggle");
+const songStatus = document.getElementById("songStatus");
 const fullDuration = document.getElementById("fullDuration");
 
 const loveSong = document.getElementById("loveSong");
@@ -431,6 +433,7 @@ function setupIntro() {
   if (!overlay || !enterBtn) return;
 
   const closeIntro = () => {
+    tryPlayMusic();
     overlay.classList.add("hidden");
   };
 
@@ -446,6 +449,8 @@ function setupIntro() {
 function setupScrollMusic() {
   if (!loveSong) return;
 
+  cleanupScrollMusicBindings();
+
   const startOnScroll = () => {
     if (!musicStarted) {
       tryPlayMusic();
@@ -455,7 +460,10 @@ function setupScrollMusic() {
   musicScrollBindings = [
     ["scroll", startOnScroll, { passive: true }],
     ["wheel", startOnScroll, { passive: true }],
+    ["touchstart", startOnScroll, { passive: true }],
     ["touchmove", startOnScroll, { passive: true }],
+    ["pointerdown", startOnScroll, { passive: true }],
+    ["keydown", startOnScroll, false],
   ];
 
   musicScrollBindings.forEach(([eventName, handler, options]) => {
@@ -466,6 +474,17 @@ function setupScrollMusic() {
 function setMusicPlaying(playing) {
   if (!loveSong) return;
   loveSong.dataset.playing = playing ? "true" : "false";
+
+  if (songToggle) {
+    songToggle.dataset.state = playing ? "pause" : "play";
+    songToggle.textContent = playing ? "Müziği Durdur" : "Müziği Çal";
+  }
+
+  if (songStatus) {
+    songStatus.textContent = playing
+      ? "Şarkımız çalıyor sevgilim. İstersen buradan durdurabilirsin."
+      : "Şarkı hazır sevgilim. Dokununca ya da aşağı kaydırınca tekrar başlayacak.";
+  }
 }
 
 function cleanupScrollMusicBindings() {
@@ -483,6 +502,7 @@ async function tryPlayMusic() {
 
   try {
     loveSong.volume = 0.8;
+    loveSong.muted = false;
     await loveSong.play();
     musicStarted = true;
     setMusicPlaying(true);
@@ -490,6 +510,60 @@ async function tryPlayMusic() {
   } catch (error) {
     setMusicPlaying(false);
   }
+}
+
+async function toggleMusic() {
+  if (!loveSong) return;
+
+  if (!loveSong.paused) {
+    loveSong.pause();
+    musicStarted = false;
+    setMusicPlaying(false);
+    setupScrollMusic();
+    return;
+  }
+
+  try {
+    loveSong.volume = 0.8;
+    loveSong.muted = false;
+    await loveSong.play();
+    musicStarted = true;
+    setMusicPlaying(true);
+    cleanupScrollMusicBindings();
+  } catch (error) {
+    setMusicPlaying(false);
+  }
+}
+
+function setupMusicControls() {
+  if (!loveSong) return;
+
+  setMusicPlaying(false);
+
+  if (songToggle) {
+    songToggle.addEventListener("click", () => {
+      toggleMusic();
+    });
+  }
+
+  loveSong.addEventListener("play", () => {
+    musicStarted = true;
+    setMusicPlaying(true);
+  });
+
+  loveSong.addEventListener("pause", () => {
+    if (loveSong.ended) return;
+    musicStarted = false;
+    setMusicPlaying(false);
+  });
+
+  loveSong.addEventListener("error", () => {
+    musicStarted = false;
+    setMusicPlaying(false);
+    if (songStatus) {
+      songStatus.textContent = "Şarkıyı burada açamadım sevgilim. Dosya yolunu bir daha kontrol edeceğim.";
+    }
+  });
 }
 
 function createHeroFloaters() {
@@ -989,6 +1063,7 @@ createPetals();
 buildSongSection();
 buildIntro();
 setupIntro();
+setupMusicControls();
 setupScrollMusic();
 buildHero();
 buildTimeline();
