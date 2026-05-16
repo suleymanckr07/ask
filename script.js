@@ -286,6 +286,7 @@ const cursorGlow = document.getElementById("cursorGlow");
 const prevVals = {};
 const heroFloaterImages = [];
 let musicStarted = false;
+let musicScrollBindings = [];
 let quoteIndex = 0;
 const shuffledQuotes = shuffle(allQuotes);
 
@@ -443,15 +444,23 @@ function setupIntro() {
 }
 
 function setupScrollMusic() {
+  if (!loveSong) return;
+
   const startOnScroll = () => {
     if (!musicStarted) {
       tryPlayMusic();
     }
   };
 
-  window.addEventListener("scroll", startOnScroll, { once: true, passive: true });
-  window.addEventListener("wheel", startOnScroll, { once: true, passive: true });
-  window.addEventListener("touchmove", startOnScroll, { once: true, passive: true });
+  musicScrollBindings = [
+    ["scroll", startOnScroll, { passive: true }],
+    ["wheel", startOnScroll, { passive: true }],
+    ["touchmove", startOnScroll, { passive: true }],
+  ];
+
+  musicScrollBindings.forEach(([eventName, handler, options]) => {
+    window.addEventListener(eventName, handler, options);
+  });
 }
 
 function setMusicPlaying(playing) {
@@ -459,14 +468,25 @@ function setMusicPlaying(playing) {
   loveSong.dataset.playing = playing ? "true" : "false";
 }
 
+function cleanupScrollMusicBindings() {
+  if (!musicScrollBindings.length) return;
+
+  musicScrollBindings.forEach(([eventName, handler, options]) => {
+    window.removeEventListener(eventName, handler, options);
+  });
+
+  musicScrollBindings = [];
+}
+
 async function tryPlayMusic() {
-  if (musicStarted) return;
+  if (musicStarted || !loveSong) return;
 
   try {
     loveSong.volume = 0.8;
     await loveSong.play();
     musicStarted = true;
     setMusicPlaying(true);
+    cleanupScrollMusicBindings();
   } catch (error) {
     setMusicPlaying(false);
   }
